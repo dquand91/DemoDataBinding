@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <!--Nếu có nhiều Object khác nhau thì tạo nhiều variable khác nhau-->
+        <variable
+            name="headerModel"
+            type="quanduong.com.demodatabinding.model.MyHeaderModel"/>
+        <variable
+            name="fuckingList"
+            type="quanduong.com.demodatabinding.model.MyContactListModel"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Them"
+                android:onClick="@{fuckingList::addNewContactFromView}"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Xoa"
+                android:onClick="@{fuckingList::removeContactFromview}"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{headerModel.title}"/>
+
+
+        <!--cái "app:fuckingItems" là do mình tạo Anotation bên class "ListContactBinder"
+            khi cái này được gọi, nó sẽ nhảy vô class ListContactBinder và hàm chưa Anotation "app:fuckingItems" để chạy
+            trong cái hàm chứa ""app:fuckingItems" nó sẽ setAdapter cho listView-->
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:fuckingItems="@{fuckingList.listContact}"
+            />
+
+    </LinearLayout>
+</layout>
